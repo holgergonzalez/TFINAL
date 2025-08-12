@@ -1,0 +1,32 @@
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div class="card card-elevated">
+                    <div class="card-body p-4 p-md-5">
+                      <h2 class="mb-1 page-title">Pedido</h2>
+                      <p class="muted mb-4">Formulario de demostración local.</p>
+                      <h2 class="mb-3">Pedido</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">Descripcion</label>
+    <input class="form-control" formControlName="descripcion" type="text" />
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Cantidad</label>
+    <input class="form-control" formControlName="cantidad" type="number" />
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Preciounitario</label>
+    <input class="form-control" formControlName="precioUnitario" type="number" />
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Guardar (local)</button>
+  </div>
+  <div class="col-12" *ngIf="saved">
+    <div class="alert alert-info mt-2">Guardado localmente (demo): {{ saved | json }}</div>
+  </div>
+</form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>

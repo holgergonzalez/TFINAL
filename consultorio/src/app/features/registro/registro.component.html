@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card card-elevated">
+      <div class="card-body p-4 p-md-5">
+        <h2 class="mb-1 page-title">Registro de usuario</h2>
+        <p class="muted mb-4">Completa los datos para crear una cuenta.</p>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating position-relative">
+                <i class="bi bi-person"></i>
+                <input class="form-control" id="nombre" placeholder="Nombre" formControlName="nombre"
+                       [class.is-invalid]="form.controls.nombre.touched && form.controls.nombre.invalid">
+                <label for="nombre">Nombre</label>
+                <div class="invalid-feedback">Ingresa al menos 2 caracteres.</div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating position-relative">
+                <i class="bi bi-person"></i>
+                <input class="form-control" id="apellido" placeholder="Apellido" formControlName="apellido"
+                       [class.is-invalid]="form.controls.apellido.touched && form.controls.apellido.invalid">
+                <label for="apellido">Apellido</label>
+                <div class="invalid-feedback">Ingresa al menos 2 caracteres.</div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating position-relative">
+                <i class="bi bi-at"></i>
+                <input class="form-control" id="usuario" placeholder="Correo" type="email" formControlName="usuario"
+                       [class.is-invalid]="form.controls.usuario.touched && form.controls.usuario.invalid">
+                <label for="usuario">Correo (usuario)</label>
+                <div class="invalid-feedback">Ingresa un correo válido.</div>
+              </div>
+              <div class="input-hint mt-1">Usa un correo activo. Lo necesitarás para recuperar tu cuenta.</div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating position-relative">
+                <i class="bi bi-shield-lock"></i>
+                <input class="form-control" id="password" placeholder="Contraseña"
+                       [type]="showPwd ? 'text' : 'password'" formControlName="password"
+                       [class.is-invalid]="form.controls.password.touched && form.controls.password.invalid">
+                <label for="password">Contraseña</label>
+                <button type="button" class="btn btn-sm btn-outline-secondary position-absolute end-0 top-50 translate-middle-y me-2"
+                        (click)="showPwd = !showPwd" aria-label="Mostrar/Ocultar contraseña">
+                  <i class="bi" [ngClass]="showPwd ? 'bi-eye-slash' : 'bi-eye'"></i>
+                </button>
+                <div class="invalid-feedback">Mínimo 6 caracteres.</div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating position-relative">
+                <i class="bi bi-telephone"></i>
+                <input class="form-control" id="telefono" placeholder="Teléfono (opcional)" formControlName="telefono">
+                <label for="telefono">Teléfono (opcional)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-2 mt-4">
+            <button class="btn btn-brand px-4" type="submit" [disabled]="saving">
+              <span *ngIf="saving" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              {{ saving ? 'Guardando...' : 'Guardar' }}
+            </button>
+            <span class="text-success" *ngIf="savedId">ID: <strong>{{ savedId }}</strong></span>
+            <span class="text-danger" *ngIf="error">{{ error }}</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
